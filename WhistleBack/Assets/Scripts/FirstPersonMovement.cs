@@ -36,6 +36,7 @@ public class FirstPersonMovement : MonoBehaviour
     public InputActionAsset inputActions;
     private InputAction moveAction;
     private InputAction lookAction;
+    public InputAction callAction;
 
     private void Awake()
     {
@@ -44,6 +45,7 @@ public class FirstPersonMovement : MonoBehaviour
         InputActionMap playerMap = inputActions.FindActionMap("Player");
         moveAction = playerMap.FindAction("Move");
         lookAction = playerMap.FindAction("Look");
+        callAction = playerMap.FindAction("Attack");
     }
     void Start()
     {
@@ -60,12 +62,14 @@ public class FirstPersonMovement : MonoBehaviour
     {
         moveAction.Enable();
         lookAction.Enable();
+        callAction.Enable();
     }
 
     void OnDisable()
     {
         moveAction.Disable();
         lookAction.Disable();
+        callAction.Disable();
     }
 
     void Update()

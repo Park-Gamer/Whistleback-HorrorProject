@@ -14,21 +14,24 @@ public class DogController : MonoBehaviour
     public Camera cam;
     public Transform player;
     
-
     private GameObject spawnedMarker;
     public GameObject marker;
 
+    FirstPersonMovement playerScript;
+
+    private void Start()
+    {
+        playerScript = FindAnyObjectByType<FirstPersonMovement>();
+    }
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && canShoot)
+        if (playerScript.callAction.WasPressedThisFrame() && canShoot)
         {
             canShoot = false;
             StartCoroutine(WaitBeforeContinuing());
             ShootRay();
             Debug.Log("Shoot");
         }
-
-        
     }
 
     void ShootRay()
